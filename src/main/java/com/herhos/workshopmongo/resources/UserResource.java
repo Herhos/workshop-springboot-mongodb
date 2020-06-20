@@ -16,12 +16,12 @@ import com.herhos.workshopmongo.services.UserService;
 public class UserResource
 {
 	@Autowired
-	private UserService service;
+	private UserService userService;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<User>> findAll()
 	{
-		List<User> list = service.findAll();
+		List<User> list = userService.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 }

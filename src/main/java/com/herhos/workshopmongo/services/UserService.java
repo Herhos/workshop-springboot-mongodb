@@ -12,10 +12,10 @@ import com.herhos.workshopmongo.repositories.UserRepository;
 public class UserService
 {
 	@Autowired
-	public UserRepository repository;
+	public UserRepository userRepository;
 	
 	public List<User> findAll()
 	{
-		return repository.findAll();
+		return userRepository.findAll();
 	}
 }
