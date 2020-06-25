@@ -1,6 +1,7 @@
 package com.herhos.workshopmongo.configs;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.TimeZone;
 
@@ -44,5 +45,8 @@ public class Instantiation implements CommandLineRunner
 			"Acordei feliz hoje!", new AuthorDto(maria));
 		
 		postRepository.saveAll(Arrays.asList(post1, post2));
+		
+		maria.getPosts().addAll(Arrays.asList(post1, post2));
+		userRepository.save(maria);
 	}	
 }
