@@ -1,13 +1,17 @@
 package com.herhos.workshopmongo.resources;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.herhos.workshopmongo.domains.Post;
+import com.herhos.workshopmongo.resources.utils.Url;
 import com.herhos.workshopmongo.services.PostService;
 
 @RestController
@@ -22,5 +26,13 @@ public class PostResource
 	{
 		Post obj = postService.findById(id);
 		return ResponseEntity.ok().body(obj);
-	}	
+	}
+	
+	@RequestMapping(value = "/titlesearch", method = RequestMethod.GET)
+	public ResponseEntity<List<Post>> findByTitle(@RequestParam(value = "text", defaultValue = "") String text)
+	{
+		text = Url.decodeParam(text);
+		List<Post> list = postService.findByTitle(text);
+		return ResponseEntity.ok().body(list);
+	}
 }
